@@ -9,7 +9,7 @@ collections:
   - community.docker
 
 roles:
-  - src: https://github.com/dashy/ansible-dashy
+  - src: https://github.com/namelivia/ansible-dashy
 ```
 
 ## Required variables
