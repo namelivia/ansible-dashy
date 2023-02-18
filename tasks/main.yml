@@ -6,6 +6,15 @@
       - cloudwatch_region is defined
       - cloudwatch_log_group is defined
       - domain_name is defined
+      - dashy_config_path is defined
+
+- name: Copy dashy config
+  copy:
+    src: "{{ dashy_config_path }}"
+    dest: "{{ hostvars[inventory_hostname].working_directory }}dashy/conf.yml"
+    owner: ubuntu
+    group: ubuntu
+    mode: '0644'
 
 - name: Create app container
   docker_container:
@@ -16,6 +25,8 @@
     memory: "10MB"
     restart_policy: "always"
     log_driver: "awslogs"
+    volumes:
+      - "{{ hostvars[inventory_hostname].working_directory }}dashy/conf.yml:/app/public/conf.yml"
     log_options:
       awslogs-region: "{{ cloudwatch_region }}"
       awslogs-group: "{{ cloudwatch_log_group }}"
