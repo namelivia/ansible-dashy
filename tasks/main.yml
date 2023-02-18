@@ -1,0 +1,28 @@
+---
+- name: 'Check mandatory variables are defined'
+  assert:
+    that:
+      - application_name is defined
+      - cloudwatch_region is defined
+      - cloudwatch_log_group is defined
+      - domain_name is defined
+
+- name: Create app container
+  docker_container:
+    name: "{{ application_name }}"
+    pull: true
+    cleanup: true
+    image: "lissy93/{{ application_name }}:latest"
+    memory: "10MB"
+    restart_policy: "always"
+    log_driver: "awslogs"
+    log_options:
+      awslogs-region: "{{ cloudwatch_region }}"
+      awslogs-group: "{{ cloudwatch_log_group }}"
+      awslogs-stream: "{{ application_name }}"
+    exposed_ports:
+      - "80"
+    env:
+      VIRTUAL_HOST: "{{ domain_name }}"
+      LETSENCRYPT_HOST: "{{ domain_name }}"
+      VIRTUAL_PORT: "80"
