@@ -28,7 +28,7 @@
     pull: true
     cleanup: true
     image: "lissy93/{{ application_name }}:latest"
-    memory: "10MB"
+    memory: "100MB"
     restart_policy: "always"
     log_driver: "awslogs"
     volumes:
