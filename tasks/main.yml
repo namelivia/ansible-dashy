@@ -8,6 +8,12 @@
       - domain_name is defined
       - dashy_config_path is defined
 
+- name: Create the config directory
+  file:
+    path: "{{ hostvars[inventory_hostname].working_directory }}dashy"
+    state: directory
+    mode: 0755
+
 - name: Copy dashy config
   copy:
     src: "{{ dashy_config_path }}"
