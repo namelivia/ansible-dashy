@@ -13,6 +13,5 @@ roles:
 ```
 
 ## Required variables
- - `cloudwatch_region` Cloudwatch region to send the logs to.
- - `cloudwatch_log_group` Cloudwatch log group to send the logs to.
+ - `loki_url` Loki url for logging.
  - `domain_name` Domain name in which the website will be served from.
