@@ -4,7 +4,7 @@
     that:
       - application_name is defined
       - loki_url is defined
-      - domain_name is defined
+      - host_port is defined
       - dashy_config_path is defined
 
 - name: Create the config directory
@@ -37,7 +37,5 @@
       loki-batch-size: "400"
     exposed_ports:
       - "80"
-    env:
-      VIRTUAL_HOST: "{{ domain_name }}"
-      LETSENCRYPT_HOST: "{{ domain_name }}"
-      VIRTUAL_PORT: "80"
+    host_ports:
+      - "0.0.0.0:{{ host_port }}:80"

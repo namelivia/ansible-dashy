@@ -14,4 +14,4 @@ roles:
 
 ## Required variables
  - `loki_url` Loki url for logging.
- - `domain_name` Domain name in which the website will be served from.
+ - `host_port` Port to be mapped in the host machine.
