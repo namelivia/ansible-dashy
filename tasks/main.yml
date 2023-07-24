@@ -37,5 +37,5 @@
       loki-batch-size: "400"
     exposed_ports:
       - "80"
-    host_ports:
+    published_ports:
       - "0.0.0.0:{{ host_port }}:80"
